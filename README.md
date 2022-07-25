@@ -2,6 +2,8 @@
 
 This project is designed to optimize a high-loaded digital goods marketplace.
 
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Immortian/Workshop-microsevices?include_prereleases)
+
 ## Whats Including In This Repository
 
 #### Docker compose which includes:
