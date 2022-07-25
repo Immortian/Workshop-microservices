@@ -8,6 +8,7 @@ This project is designed to optimize a high-loaded digital goods marketplace.
 
 * ***potgreSQL*** - 3 containers on postgres:13.3 image (users database, items database and transactions database)
 * ***pgAdmin*** - container on dpage/pgadmin4 image to manage DBs
+* ***RabbitMQ*** - massage broker on rabbitmq:3-management image with web UI
 
 ## Run The Project
 You will need the following tools:

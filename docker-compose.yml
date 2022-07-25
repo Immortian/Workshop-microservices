@@ -49,3 +49,10 @@ services:
       - usersdb
       - itemsdb
       - transactionsdb
+  rabbitmq:
+    container_name: workshop-mq
+    image: rabbitmq:3-management
+    restart: always
+    ports: 
+      - "15672:15672"
+    
