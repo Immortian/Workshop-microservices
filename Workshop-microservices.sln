@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8227F6EB-D1CA-409F-8375-676D105A363C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Users", "Workshop.Users", "{0AAA244A-C210-40AD-A417-0D2FAE9B865C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{81DBAF29-CBB1-4A50-A7E4-2A8407D86B68}"
+	ProjectSection(SolutionItems) = preProject
+		Workshop.Users\Database\workshop-users-db.sql = Workshop.Users\Database\workshop-users-db.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Items", "Workshop.Items", "{72E79640-4769-44D8-A816-EC93FED51562}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Transactions", "Workshop.Transactions", "{EC3916E4-FFD9-469E-9902-1A2B1E9D98C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{A05AEC2A-A411-4CB2-9E72-998E97D16058}"
+	ProjectSection(SolutionItems) = preProject
+		Workshop.Transactions\Database\workshop-transactions-db.sql = Workshop.Transactions\Database\workshop-transactions-db.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{218FFD9E-CDD0-4910-BFE9-B3088EFB6027}"
+	ProjectSection(SolutionItems) = preProject
+		Workshop.Items\Database\workshop-items-db.sql = Workshop.Items\Database\workshop-items-db.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81DBAF29-CBB1-4A50-A7E4-2A8407D86B68} = {0AAA244A-C210-40AD-A417-0D2FAE9B865C}
+		{A05AEC2A-A411-4CB2-9E72-998E97D16058} = {EC3916E4-FFD9-469E-9902-1A2B1E9D98C9}
+		{218FFD9E-CDD0-4910-BFE9-B3088EFB6027} = {72E79640-4769-44D8-A816-EC93FED51562}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DE0AFF0-4249-4118-A060-9B02BA87B5D3}
+	EndGlobalSection
+EndGlobal
