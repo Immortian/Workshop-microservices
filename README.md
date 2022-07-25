@@ -1,8 +1,8 @@
-# Workshop-microsevices
+# Workshop-microservices
 
 This project is designed to optimize a high-loaded digital goods marketplace.
 
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Immortian/Workshop-microsevices?include_prereleases)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Immortian/Workshop-microservices?include_prereleases)
 
 ## Whats Including In This Repository
 
@@ -23,9 +23,9 @@ Follow these steps to get your development environment set up:
 
 1. Clone this repository:
 ```
- git clone "https://github.com/Immortian/Workshop-microsevices"
+ git clone "https://github.com/Immortian/Workshop-microservices"
 ```
-2. Go to Workshop-microsevices/ folder with cmd and build docker compose file
+2. Go to Workshop-microservices/ folder with cmd and build docker compose file
 ```
  docker compose up -d 
 ```
