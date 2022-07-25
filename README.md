@@ -6,9 +6,9 @@ This project is designed to optimize a high-loaded digital goods marketplace.
 
 #### Docker compose which includes:
 
-* ***potgreSQL*** - 3 containers on postgres:13.3 image (users database, items database and transactions database)
-* ***pgAdmin*** - container on dpage/pgadmin4 image to manage DBs
-* ***RabbitMQ*** - massage broker on rabbitmq:3-management image with web UI
+* ***potgreSQL*** - 3 containers on image: postgres:13.3 (users database, items database and transactions database)
+* ***pgAdmin*** - container on image: dpage/pgadmin4 to manage DBs
+* ***RabbitMQ*** - massage broker on image: rabbitmq:3-management with web UI
 
 ## Run The Project
 You will need the following tools:
@@ -23,7 +23,7 @@ Follow these steps to get your development environment set up:
 ```
  git clone "https://github.com/Immortian/Workshop-microsevices"
 ```
-2. Go to WorkShop/ folder with cmd and build docker compose file
+2. Go to Workshop-microsevices/ folder with cmd and build docker compose file
 ```
  docker compose up -d 
 ```
