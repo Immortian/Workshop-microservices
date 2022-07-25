@@ -1,4 +1,4 @@
-# WorkShop
+# Workshop-microsevices
 
 This project is designed to optimize a high-loaded digital goods marketplace.
 
