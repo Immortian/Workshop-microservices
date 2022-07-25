@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  usersdb:
+    container_name: workshop-users-pg-13.3
+    image: postgres:13.3
+    restart: always
+    environment:
+      POSTGRES_USER: workshopuser
+      POSTGRES_PASSWORD: workshopsv
+      POSTGRES_DB: workshopusersdb
+    volumes:
+      - ./Workshop.Users/Database:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+  itemsdb:
+    container_name: workshop-items-pg-13.3
+    image: postgres:13.3
+    restart: always
+    environment:
+      POSTGRES_USER: workshopuser
+      POSTGRES_PASSWORD: workshopsv
+      POSTGRES_DB: workshopitemsdb
+    volumes:
+      - ./Workshop.Items/Database:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
+  transactionsdb:
+    container_name: workshop-transactions-pg-13.3
+    image: postgres:13.3
+    restart: always
+    environment:
+      POSTGRES_USER: workshopuser
+      POSTGRES_PASSWORD: workshopsv
+      POSTGRES_DB: workshoptransactionsdb
+    volumes:
+      - ./Workshop.Transactions/Database:/docker-entrypoint-initdb.d
+    ports:
+      - "5434:5432"
+  pgadmin:
+    container_name: workshop-pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: workshopsv
+    ports:
+      - "5050:80"
+    depends_on:
+      - usersdb
+      - itemsdb
+      - transactionsdb
