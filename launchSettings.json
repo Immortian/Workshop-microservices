@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "T-U": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "items.microservice": "DoNotStart",
+        "itemsdb": "DoNotStart",
+        "pgadmin": "DoNotStart",
+        "rabbitmq": "StartWithoutDebugging",
+        "confirmtransactions.microservice": "StartWithoutDebugging",
+        "transactionsdb": "DoNotStart",
+        "users.microservice": "StartWithoutDebugging",
+        "usersdb": "StartWithoutDebugging"
+      }
+    }
+  }
+}

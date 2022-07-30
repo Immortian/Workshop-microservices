@@ -1,4 +1,5 @@
-version: '3.8'
+version: '3.4'
+
 services:
   usersdb:
     container_name: workshop-users-pg-13.3
@@ -44,7 +45,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: workshopsv
     ports:
-      - "5050:80"
+      - "5051:80"
     depends_on:
       - usersdb
       - itemsdb
@@ -55,4 +56,45 @@ services:
     restart: always
     ports: 
       - "15672:15672"
-    
+      - "5672:5672"
+  users.microservice:
+    container_name: workshop-users-microservice
+    build:
+      context: .
+      dockerfile: /Workshop.Users/Users.Microservice/Dockerfile
+    restart: always
+    environment:
+      ASPNETCORE_URLS: "http://+80"
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "8000:80"
+    depends_on:
+      - usersdb
+      - rabbitmq
+  items.microservice:
+    container_name: workshop-items-microservice
+    build:
+      context: .
+      dockerfile: /Workshop.Items/Items.Microservice/Dockerfile
+    restart: always
+    environment:
+      ASPNETCORE_URLS: "http://+80"
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "8001:80"
+    depends_on:
+      - itemsdb
+      - rabbitmq
+  confirmtransactions.microservice:
+    image: ${DOCKER_REGISTRY-}transactionsmicroservice
+    build:
+      context: .
+      dockerfile: Workshop.ConfirmTransactions/ConfirmTransactions.Microservice/Dockerfile
+    restart: always
+    environment:
+      ASPNETCORE_URLS: "http://+80"
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "8002:80"
+    depends_on:
+      - rabbitmq

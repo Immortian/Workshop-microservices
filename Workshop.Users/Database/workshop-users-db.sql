@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS public."User"
     user_name character varying(30) COLLATE pg_catalog."default" NOT NULL,
     user_email character varying(30) COLLATE pg_catalog."default" NOT NULL,
     user_password character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    is_vip boolean NOT NULL DEFAULT false,
+    wallet_balance money NOT NULL default 0,
     CONSTRAINT "User_pkey" PRIMARY KEY (user_id),
     CONSTRAINT "User_user_name_key" UNIQUE (user_name),
     CONSTRAINT "User_user_email_key" UNIQUE (user_email)

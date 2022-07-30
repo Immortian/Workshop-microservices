@@ -11,6 +11,7 @@ This project is designed to optimize a high-loaded digital goods marketplace.
 * ***potgreSQL*** - 3 containers on image: postgres:13.3 (users database, items database and transactions database)
 * ***pgAdmin*** - container on image: dpage/pgadmin4 to manage DBs
 * ***RabbitMQ*** - massage broker on image: rabbitmq:3-management with web UI
+* ***ASP.Net Core*** - 3 containers on image builded from mcr.microsoft.com/dotnet/aspnet:6.0 (users microservice, items microservice and confirm transaction microservice)
 
 ## Run The Project
 You will need the following tools:
@@ -29,14 +30,17 @@ Follow these steps to get your development environment set up:
 ```
  docker compose up -d 
 ```
-3. Go to http://localhost:5050/ (or open pgAdmin with browser in Docker Desktop)
-4. Sign In using authorization data in docker compose.yml file 
+Next steps depends on your purpose
+
+#### Want to manage DBs?
+1. Go to http://localhost:5051/ (or open pgAdmin with browser in Docker Desktop)
+2. Sign In using authorization data in docker compose.yml file 
 ```
 default: 
 	PGADMIN_DEFAULT_EMAIL: admin@admin.com
 	PGADMIN_DEFAULT_PASSWORD: workshopsv
 ```
-5. For each posgre container: Add new server: fill up name, there you have to fill connection tab
+3. For each posgre container: Add new server: fill up name, there you have to fill connection tab
 * "Host name/address": container name in docker compose.yml
 ```
 example:
@@ -53,4 +57,12 @@ example:
 example:
 	POSTGRES_PASSWORD: workshopsv
 ```
-6. Enjoy
+4. Enjoy
+
+#### Want to see how RabbitMQ works?
+
+1. Go to http://localhost:15672/ (or open RabbitMQ with browser in Docker Desktop)
+2. Sign In using username: guest and passwork guest
+3. In another tab go to http://localhost:8002/Swagger/index.html
+4. Execute Http post request with random data
+5. Watch in RabbitMQ

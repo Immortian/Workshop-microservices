@@ -31,7 +31,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{21
 		Workshop.Items\Database\workshop-items-db.sql = Workshop.Items\Database\workshop-items-db.sql
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users.Microservice", "Workshop.Users\Users.Microservice\Users.Microservice.csproj", "{91473367-A359-472E-BCE5-86B5FEBEE744}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Items.Microservice", "Workshop.Items\Items.Microservice\Items.Microservice.csproj", "{51A88AEF-9DAC-4EF7-92DB-80183863A632}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0E0A59FC-725E-436F-87AB-11618D793223}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfirmTransactions.Microservice", "Workshop.ConfirmTransactions\ConfirmTransactions.Microservice\ConfirmTransactions.Microservice.csproj", "{A53AE829-3771-485A-A90C-A53C942C6D9C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91473367-A359-472E-BCE5-86B5FEBEE744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91473367-A359-472E-BCE5-86B5FEBEE744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91473367-A359-472E-BCE5-86B5FEBEE744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91473367-A359-472E-BCE5-86B5FEBEE744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0A59FC-725E-436F-87AB-11618D793223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0A59FC-725E-436F-87AB-11618D793223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0A59FC-725E-436F-87AB-11618D793223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0A59FC-725E-436F-87AB-11618D793223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
@@ -39,6 +69,9 @@ Global
 		{81DBAF29-CBB1-4A50-A7E4-2A8407D86B68} = {0AAA244A-C210-40AD-A417-0D2FAE9B865C}
 		{A05AEC2A-A411-4CB2-9E72-998E97D16058} = {EC3916E4-FFD9-469E-9902-1A2B1E9D98C9}
 		{218FFD9E-CDD0-4910-BFE9-B3088EFB6027} = {72E79640-4769-44D8-A816-EC93FED51562}
+		{91473367-A359-472E-BCE5-86B5FEBEE744} = {0AAA244A-C210-40AD-A417-0D2FAE9B865C}
+		{51A88AEF-9DAC-4EF7-92DB-80183863A632} = {72E79640-4769-44D8-A816-EC93FED51562}
+		{A53AE829-3771-485A-A90C-A53C942C6D9C} = {EC3916E4-FFD9-469E-9902-1A2B1E9D98C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8DE0AFF0-4249-4118-A060-9B02BA87B5D3}
