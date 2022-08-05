@@ -10,7 +10,7 @@ This project is designed to optimize a high-loaded digital goods marketplace.
 
 * ***potgreSQL*** - 3 containers on image: postgres:13.3 (users database, items database and transactions database)
 * ***pgAdmin*** - container on image: dpage/pgadmin4 to manage DBs
-* ***RabbitMQ*** - massage broker on image: rabbitmq:3-management with web UI
+* ***RabbitMQ*** - message broker on image: rabbitmq:3-management with web UI
 * ***ASP.Net Core*** - 3 containers on image builded from mcr.microsoft.com/dotnet/aspnet:6.0 (users microservice, items microservice and confirm transaction microservice)
 
 ## Run The Project
@@ -66,7 +66,7 @@ example:
 ### RabbitMQ management:
 
 1. Go to http://localhost:15672/ (or open RabbitMQ with browser in Docker Desktop)
-2. Sign In using username: guest and passwork guest
+2. Sign In using username: guest and password: guest
 3. In another tab go to http://localhost:8002/Swagger/index.html
 4. Execute Http post request with random data
 5. Watch in RabbitMQ
