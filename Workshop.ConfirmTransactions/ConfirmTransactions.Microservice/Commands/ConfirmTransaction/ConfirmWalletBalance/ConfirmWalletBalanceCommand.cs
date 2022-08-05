@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using RabbitMQ.Client;
 
 namespace ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmWalletBalance
 {
@@ -7,5 +8,6 @@ namespace ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmWa
         public int TransactionId { get; set; }
         public int BuyerId { get; set; }
         public decimal Price { get; set; }
+        public IBasicProperties Properties { get; set; }
     }
 }

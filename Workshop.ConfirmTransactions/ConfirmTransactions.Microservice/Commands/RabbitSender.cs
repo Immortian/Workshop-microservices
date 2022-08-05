@@ -24,11 +24,11 @@ namespace ConfirmTransactions.Microservice.Commands
             CreateConnection();
         }
         /// <summary>
-        /// Send messege using topic exchange
+        /// Send RPC messege using topic exchange
         /// </summary>
         /// <param name="value"></param>
         /// <param name="routingKey">topic exchange routing key</param>
-        public void Send(object value, string routingKey)
+        public void Send(object value, string routingKey, string correlationId)
         {
             if (ConnectionExists())
             {
@@ -39,12 +39,15 @@ namespace ConfirmTransactions.Microservice.Commands
                     string _routingKey = routingKey;
 
                     string messege = JsonSerializer.Serialize(value, value.GetType());
-
                     var body = Encoding.UTF8.GetBytes(messege);
+
+                    var props = channel.CreateBasicProperties();
+                    props.ReplyTo = "reply_confirmation_transaction_queue";
+                    props.CorrelationId = correlationId;
 
                     channel.BasicPublish(exchange: "topic_transaction",
                                          routingKey: routingKey,
-                                         basicProperties: null,
+                                         basicProperties: props,
                                          body: body);
                 }
             }

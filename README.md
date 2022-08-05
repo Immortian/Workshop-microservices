@@ -19,6 +19,10 @@ You will need the following tools:
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * [Git Bash](https://git-scm.com/downloads)
 
+You may also need this tools:
+
+* [Visual Studio](https://visualstudio.microsoft.com/en/)
+
 ### Configuration
 Follow these steps to get your development environment set up:
 
@@ -32,7 +36,7 @@ Follow these steps to get your development environment set up:
 ```
 Next steps depends on your purpose
 
-#### Want to manage DBs?
+#### DBs management:
 1. Go to http://localhost:5051/ (or open pgAdmin with browser in Docker Desktop)
 2. Sign In using authorization data in docker compose.yml file 
 ```
@@ -59,10 +63,31 @@ example:
 ```
 4. Enjoy
 
-#### Want to see how RabbitMQ works?
+#### RabbitMQ management:
 
 1. Go to http://localhost:15672/ (or open RabbitMQ with browser in Docker Desktop)
 2. Sign In using username: guest and passwork guest
 3. In another tab go to http://localhost:8002/Swagger/index.html
 4. Execute Http post request with random data
 5. Watch in RabbitMQ
+
+#### ASP.Net microservices management:
+***There are 2 environments:***
+* Production - default environment in docker compose.yml
+it will be automaticaly applyed, when you run docker compose
+
+* Development - to debug  without virtualization (but the reqired services must be run separately)
+
+1. Read docker compose.yml to find reqirements of microservices you need
+```
+exemple:
+	depends_on:
+	  - rabbitmq
+```
+2. Search for options of reqired container: container_name, image, ports
+3. For each reqired container: in cmd console, use this command:
+```
+docker run -p [ports]:[ports] --name [container_name] -d [image]
+```
+4. Go to Visual Studio and assign projects to be launched
+5. Start projects

@@ -1,3 +1,5 @@
+using MediatR;
+using System.Reflection;
 using Users.Microservice;
 using Users.Microservice.Commands;
 using Users.Microservice.RabbirListener;
@@ -11,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddScoped<workshopusersdbContext>();
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddSingleton<RabbitListener>();
 builder.Services.AddSingleton<RabbitSender>();
 var app = builder.Build();

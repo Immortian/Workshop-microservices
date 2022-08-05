@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmWalletBalance;
 using ConfirmTransactions.Microservice.Controllers.Base;
+using ConfirmTransactions.Microservice.Commands.ConfirmTransaction;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,14 +40,26 @@ namespace ConfirmTransactions.Microservice.Controllers
         /// </summary>
         /// <param name="value"></param>
         [HttpPost]
-        public async Task PostAsync([FromBody] TransactionConfirmation value)
+        public async Task PostAsync([FromBody] Transaction value)
         {
-            _context.TransactionConfirmations.Add(value);
+            var currentTransaction = new TransactionConfirmation
+            {
+                BuyerId = value.BuyerId,
+                SellerId = value.SellerId,
+                CollectionId = value.CollectionId,
+                ItemId = value.ItemId,
+                Price = value.Price,
+                IsItemOwnerOk = false,
+                IsWalletBalanceOk = false
+            };
+            _context.TransactionConfirmations.Add(currentTransaction);
+            await _context.SaveChangesAsync();
             var request = new ConfirmWalletBalanceCommand
             {
-                TransactionId = value.TransactionId,
-                BuyerId = value.BuyerId,
-                Price = value.Price
+                TransactionId = currentTransaction.TransactionId,
+                BuyerId = currentTransaction.BuyerId,
+                Price = currentTransaction.Price,
+                Properties = null
             };
             await Mediator.Send(request);
         }

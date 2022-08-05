@@ -49,6 +49,31 @@ namespace Users.Microservice.Commands
                 }
             }
         }
+        /// <summary>
+        /// Send response to RPC messege
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="replyTo"></param>
+        /// <param name="correlationId"></param>
+        public void Send(object value, string replyTo, string correlationId)
+        {
+            if (ConnectionExists())
+            {
+                using (var channel = _connection.CreateModel())
+                {
+                    string messege = JsonSerializer.Serialize(value, value.GetType());
+                    var body = Encoding.UTF8.GetBytes(messege);
+
+                    var props = channel.CreateBasicProperties();
+                    props.CorrelationId = correlationId;
+
+                    channel.BasicPublish(exchange: "",
+                                         routingKey: replyTo,
+                                         basicProperties: props,
+                                         body: body);
+                }
+            }
+        }
 
         private void CreateConnection()
         {

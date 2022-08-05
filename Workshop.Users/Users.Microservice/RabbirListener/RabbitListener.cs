@@ -9,17 +9,16 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Users.Microservice.Commands.CheckWalletBalance;
-using Users.Microservice.Controllers.Base;
 
 namespace Users.Microservice.RabbirListener
 {
-    public class RabbitListener : BaseController
+    public class RabbitListener
     {
         IConfiguration Configuration;
         ConnectionFactory factory { get; set; }
         IConnection connection { get; set; }
         IModel channel { get; set; }
-        private IMediator _mediator;
+        IServiceProvider Services { get; set; }
         [NonAction]
         public void Register()
         {
@@ -33,9 +32,19 @@ namespace Users.Microservice.RabbirListener
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body;
+                var replyProps = channel.CreateBasicProperties();
+                replyProps.CorrelationId = ea.BasicProperties.CorrelationId;
+                replyProps.ReplyTo = ea.BasicProperties.ReplyTo;
+
                 var message = Encoding.UTF8.GetString(body.ToArray());
-                var messegeContent = JsonSerializer.Deserialize(message, typeof(CheckWalletbalanceCommand));
-                Mediator.Send(messegeContent);
+                var messegeContent = (CheckWalletbalanceCommand)JsonSerializer.Deserialize(message, typeof(CheckWalletbalanceCommand));
+                messegeContent.Properties = replyProps;
+                using (var scope = Services.CreateScope())
+                {
+                    var serviceProvider = scope.ServiceProvider;
+                    Mediator = serviceProvider.GetRequiredService<IMediator>();
+                    Mediator.Send(messegeContent).Wait();
+                }
             };
 
             channel.BasicConsume(queue: "topic_transaction_queue", 
@@ -48,11 +57,13 @@ namespace Users.Microservice.RabbirListener
         {
             this.connection.Close();
         }
-
-        public RabbitListener(IConfiguration configuration)
+        private IMediator Mediator;
+        public RabbitListener(IConfiguration configuration, IServiceProvider Services)
         {
+            this.Services = Services;
+
             Configuration = configuration;
-            this.factory = new ConnectionFactory() 
+            this.factory = new ConnectionFactory()
             {
                 HostName = Configuration["RabbitMQ:HostName"],
                 UserName = Configuration["RabbitMQ:UserName"],

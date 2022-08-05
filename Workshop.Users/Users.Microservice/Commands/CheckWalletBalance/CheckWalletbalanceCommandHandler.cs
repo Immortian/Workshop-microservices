@@ -5,30 +5,28 @@ namespace Users.Microservice.Commands.CheckWalletBalance
     public class CheckWalletbalanceCommandHandler : IRequestHandler<CheckWalletbalanceCommand>
     {
         RabbitSender _rabbitSender;
+        workshopusersdbContext _context;
 
-        public CheckWalletbalanceCommandHandler(RabbitSender rabbitSender)
+        public CheckWalletbalanceCommandHandler(RabbitSender rabbitSender, workshopusersdbContext context)
         {
             _rabbitSender = rabbitSender;
+            _context = context;
         }
 
         public async Task<Unit> Handle(CheckWalletbalanceCommand request, CancellationToken cancellationToken)
         {
-            //workshopusersdbContext _context = new workshopusersdbContext();
             //var buyer = _context.Users.Where(x => x.UserId == request.BuyerId).FirstOrDefault();
+            var IsOk = false;
             //if (buyer.WalletBalance >= request.Price)
-                _rabbitSender.Send(
-                    new CheckWalletBalanceResponseCommand 
-                    {
-                        TransactionId = request.TransactionId, 
-                        IsOk = true
-                    }, "Confirmed.Transaction.WalletBalance");
-            //else
-            //  _rabbitSender.Send(
-            //      new CheckWalletBalanceResponseCommand
-            //      {
-            //      TransactionId = request.TransactionId,
-            //      IsOk = true
-            //      }, "Confirmed.Transaction.WalletBalance");
+                IsOk = true;
+            
+            _rabbitSender.Send(
+            new CheckWalletBalanceResponseCommand
+            {
+                TransactionId = request.TransactionId,
+                IsOk = IsOk
+            }, request.Properties.ReplyTo, request.Properties.CorrelationId);
+
             return Unit.Value;
         }
     }

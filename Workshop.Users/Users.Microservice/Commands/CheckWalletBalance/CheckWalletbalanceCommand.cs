@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using RabbitMQ.Client;
 
 namespace Users.Microservice.Commands.CheckWalletBalance
 {
@@ -7,5 +8,6 @@ namespace Users.Microservice.Commands.CheckWalletBalance
         public int TransactionId { get; set; }
         public int BuyerId { get; set; }
         public decimal Price { get; set; }
+        public IBasicProperties Properties { get; set; }
     }
 }

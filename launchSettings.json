@@ -11,7 +11,7 @@
         "confirmtransactions.microservice": "StartWithoutDebugging",
         "transactionsdb": "DoNotStart",
         "users.microservice": "StartWithoutDebugging",
-        "usersdb": "StartWithoutDebugging"
+        "usersdb": "DoNotStart"
       }
     }
   }
