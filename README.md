@@ -36,7 +36,7 @@ Follow these steps to get your development environment set up:
 ```
 Next steps depends on your purpose
 
-#### DBs management:
+### DBs management:
 1. Go to http://localhost:5051/ (or open pgAdmin with browser in Docker Desktop)
 2. Sign In using authorization data in docker compose.yml file 
 ```
@@ -63,7 +63,7 @@ example:
 ```
 4. Enjoy
 
-#### RabbitMQ management:
+### RabbitMQ management:
 
 1. Go to http://localhost:15672/ (or open RabbitMQ with browser in Docker Desktop)
 2. Sign In using username: guest and passwork guest
@@ -71,12 +71,12 @@ example:
 4. Execute Http post request with random data
 5. Watch in RabbitMQ
 
-#### ASP.Net microservices management:
+### ASP.Net microservices management:
 ***There are 2 environments:***
-* Production - default environment in docker compose.yml
+#### Production - default environment in docker compose.yml
 it will be automaticaly applyed, when you run docker compose
 
-* Development - to debug  without virtualization (but the reqired services must be run separately)
+#### Development - to debug  without virtualization (but the reqired services must be run separately)
 
 1. Read docker compose.yml to find reqirements of microservices you need
 ```
