@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Json;
 
-namespace ConfirmTransactions.Microservice.Commands
+namespace Items.Microservice.Commands
 {
     public class RabbitSender
     {
@@ -24,27 +24,49 @@ namespace ConfirmTransactions.Microservice.Commands
             CreateConnection();
         }
         /// <summary>
-        /// Send RPC messege using topic exchange
+        /// Send messege using topic exchange
         /// </summary>
         /// <param name="value"></param>
         /// <param name="routingKey">topic exchange routing key</param>
-        public void Send(object value, string routingKey, string correlationId)
+        public void Send(object value, string routingKey)
         {
             if (ConnectionExists())
             {
                 using (var channel = _connection.CreateModel())
                 {
-                    channel.ExchangeDeclare(exchange: "topic_transaction", type: ExchangeType.Topic);
-                    
+                    channel.ExchangeDeclare(exchange: "topic_item", type: ExchangeType.Topic);
+
+                    string messege = JsonSerializer.Serialize(value, value.GetType());
+
+                    var body = Encoding.UTF8.GetBytes(messege);
+
+                    channel.BasicPublish(exchange: "topic_item",
+                                         routingKey: routingKey,
+                                         basicProperties: null,
+                                         body: body);
+                }
+            }
+        }
+        /// <summary>
+        /// Send response to RPC messege
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="replyTo"></param>
+        /// <param name="correlationId"></param>
+        public void Send(object value, string replyTo, string correlationId)
+        {
+            if (ConnectionExists())
+            {
+                using (var channel = _connection.CreateModel())
+                {
                     string messege = JsonSerializer.Serialize(value, value.GetType());
                     var body = Encoding.UTF8.GetBytes(messege);
 
                     var props = channel.CreateBasicProperties();
-                    props.ReplyTo = "reply_confirmation_transaction_queue";
                     props.CorrelationId = correlationId;
 
-                    channel.BasicPublish(exchange: "topic_transaction",
-                                         routingKey: routingKey,
+                    channel.BasicPublish(exchange: "",
+                                         routingKey: replyTo,
                                          basicProperties: props,
                                          body: body);
                 }
@@ -62,7 +84,7 @@ namespace ConfirmTransactions.Microservice.Commands
                     UserName = _username,
                     Password = _password,
                     RequestedHeartbeat = new TimeSpan(0, 0, 60)
-            };
+                };
                 _connection = factory.CreateConnection();
             }
             catch (Exception ex)

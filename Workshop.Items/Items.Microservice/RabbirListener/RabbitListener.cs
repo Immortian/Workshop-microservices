@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Users.Microservice.Commands.CheckWalletBalance;
+using Items.Microservice.Commands.CheckItemOwner;
 
-namespace Users.Microservice.RabbirListener
+namespace Items.Microservice.RabbirListener
 {
     public class RabbitListener
     {
@@ -23,10 +23,10 @@ namespace Users.Microservice.RabbirListener
         public void Register()
         {
             channel.ExchangeDeclare(exchange: "topic_transaction", type: ExchangeType.Topic);
-            channel.QueueDeclare(queue: "topic_users_queue", autoDelete: false);
-            channel.QueueBind(queue: "topic_users_queue",
+            channel.QueueDeclare(queue: "topic_items_queue", autoDelete: false);
+            channel.QueueBind(queue: "topic_items_queue",
                               exchange: "topic_transaction",
-                              routingKey: "#.WalletBalance.#");
+                              routingKey: "#.ItemOwner.#");
 
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, ea) =>
@@ -37,7 +37,7 @@ namespace Users.Microservice.RabbirListener
                 replyProps.ReplyTo = ea.BasicProperties.ReplyTo;
 
                 var message = Encoding.UTF8.GetString(body.ToArray());
-                var messegeContent = (CheckWalletbalanceCommand)JsonSerializer.Deserialize(message, typeof(CheckWalletbalanceCommand));
+                var messegeContent = (CheckItemOwnerCommand)JsonSerializer.Deserialize(message, typeof(CheckItemOwnerCommand));
                 messegeContent.Properties = replyProps;
                 using (var scope = Services.CreateScope())
                 {
@@ -47,7 +47,7 @@ namespace Users.Microservice.RabbirListener
                 }
             };
 
-            channel.BasicConsume(queue: "topic_users_queue", 
+            channel.BasicConsume(queue: "topic_items_queue", 
                                  autoAck: true, 
                                  consumer: consumer);
         }

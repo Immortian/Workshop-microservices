@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using ConfirmTransactions.Microservice.Controllers.Base;
 using ConfirmTransactions.Microservice.Commands.ConfirmTransaction;
 using Microsoft.AspNetCore.Mvc;
+using ConfirmTransactions.Microservice.Commands.SendConfirmedTransaction;
 
 namespace ConfirmTransactions.Microservice.RabbirListener
 {
@@ -25,11 +26,6 @@ namespace ConfirmTransactions.Microservice.RabbirListener
         [NonAction]
         public void Register()
         {
-            //channel.ExchangeDeclare(exchange: "topic_user", type: ExchangeType.Topic);
-            //channel.QueueDeclare(queue: "topic_confirmation_WalletBalance_queue", autoDelete: false);
-            //channel.QueueBind(queue: "topic_confirmation_WalletBalance_queue",
-            //                  exchange: "topic_user",
-            //                  routingKey: "#.Transaction.WalletBalance.#");
             channel.QueueDeclare(queue: "reply_confirmation_transaction_queue", autoDelete: false);
 
             var consumer = new EventingBasicConsumer(channel);
@@ -71,14 +67,30 @@ namespace ConfirmTransactions.Microservice.RabbirListener
         /// <param name="transaction"></param>
         private void FinalCheck(TransactionConfirmation transaction)
         {
-            if (transaction.IsItemOwnerOk && transaction.IsWalletBalanceOk)
+            if (transaction.IsItemOwnerOk is null || transaction.IsWalletBalanceOk is null)
+                return;
+
+            if ((bool)transaction.IsItemOwnerOk && (bool)transaction.IsWalletBalanceOk)
             {
                 using (var scope = Services.CreateScope())
                 {
                     var serviceProvider = scope.ServiceProvider;
                     Mediator = serviceProvider.GetRequiredService<IMediator>();
-                    Mediator.Send(transaction).Wait();
+                    Mediator.Send(new SendConfirmedTransactionCommand
+                    {
+                        TransactionId = transaction.TransactionId,
+                        SellerId = transaction.SellerId,
+                        BuyerId = transaction.BuyerId,
+                        ItemId = transaction.ItemId,
+                        CollectionId = transaction.CollectionId,
+                        Price = transaction.Price,
+                        AreChecksPassed = true
+                    }).Wait();
                 }
+            }
+            else
+            {
+                //user notification
             }
         }
         [NonAction]

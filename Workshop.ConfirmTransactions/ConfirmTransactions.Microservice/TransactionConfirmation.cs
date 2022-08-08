@@ -11,7 +11,7 @@ namespace ConfirmTransactions.Microservice
         public int? CollectionId { get; set; }
         public int? ItemId { get; set; }
         public decimal Price { get; set; }
-        public bool IsWalletBalanceOk { get; set; }
-        public bool IsItemOwnerOk { get; set; }
+        public bool? IsWalletBalanceOk { get; set; }
+        public bool? IsItemOwnerOk { get; set; }
     }
 }

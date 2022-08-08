@@ -6,6 +6,7 @@ using System.Text.Json;
 using ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmWalletBalance;
 using ConfirmTransactions.Microservice.Controllers.Base;
 using ConfirmTransactions.Microservice.Controllers.Models;
+using ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmItemOwner;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -49,19 +50,31 @@ namespace ConfirmTransactions.Microservice.Controllers
                 CollectionId = value.CollectionId,
                 ItemId = value.ItemId,
                 Price = value.Price,
-                IsItemOwnerOk = false,
-                IsWalletBalanceOk = false
+                IsItemOwnerOk = null,
+                IsWalletBalanceOk = null
             };
             _context.TransactionConfirmations.Add(currentTransaction);
             await _context.SaveChangesAsync();
-            var request = new ConfirmWalletBalanceCommand
+            var WalletBalanceRequest = new ConfirmWalletBalanceCommand
             {
                 TransactionId = currentTransaction.TransactionId,
                 BuyerId = currentTransaction.BuyerId,
                 Price = currentTransaction.Price,
                 Properties = null
             };
-            await Mediator.Send(request);
+
+            await Mediator.Send(WalletBalanceRequest);
+
+            var ItemOwnerRequest = new ConfirmItemOwnerCommand
+            {
+                TransactionId = currentTransaction.TransactionId,
+                SellerId = currentTransaction.SellerId,
+                CollectionId = currentTransaction.CollectionId,
+                ItemId = currentTransaction.ItemId,
+                Properties = null
+            };
+
+            await Mediator.Send(ItemOwnerRequest);
         }
 
         // PUT api/<TransactionsController>/5
