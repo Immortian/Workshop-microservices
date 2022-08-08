@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmWalletBalance;
 using ConfirmTransactions.Microservice.Controllers.Base;
-using ConfirmTransactions.Microservice.Commands.ConfirmTransaction;
+using ConfirmTransactions.Microservice.Controllers.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
