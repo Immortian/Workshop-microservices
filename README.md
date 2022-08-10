@@ -37,7 +37,7 @@ Follow these steps to get your development environment set up:
 Next steps depends on your purpose
 
 ### DBs management:
-1. Go to http://localhost:5051/ (or open pgAdmin with browser in Docker Desktop)
+1. Go to http://localhost:5050/ (or open pgAdmin with browser in Docker Desktop)
 2. Sign In using authorization data in docker compose.yml file 
 ```
 default: 

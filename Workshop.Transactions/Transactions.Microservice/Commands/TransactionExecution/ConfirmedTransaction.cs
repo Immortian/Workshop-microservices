@@ -1,14 +1,9 @@
 ﻿using MediatR;
 using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConfirmTransactions.Microservice.Commands.SendConfirmedTransaction
+namespace Transactions.Microservice.Commands.TransactionExecution
 {
-    public class SendConfirmedTransactionCommand : IRequest
+    public class ConfirmedTransaction : IRequest
     {
         public int TransactionId { get; set; }
         public int SellerId { get; set; }

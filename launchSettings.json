@@ -11,7 +11,23 @@
         "confirmtransactions.microservice": "StartWithoutDebugging",
         "transactionsdb": "DoNotStart",
         "users.microservice": "StartWithoutDebugging",
-        "usersdb": "DoNotStart"
+        "usersdb": "DoNotStart",
+        "transactions.microservice": "StartDebugging"
+      }
+    },
+    "All": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "confirmtransactions.microservice": "StartWithoutDebugging",
+        "items.microservice": "StartWithoutDebugging",
+        "itemsdb": "StartWithoutDebugging",
+        "pgadmin": "DoNotStart",
+        "rabbitmq": "StartWithoutDebugging",
+        "transactions.microservice": "DoNotStart",
+        "transactionsdb": "DoNotStart",
+        "users.microservice": "StartWithoutDebugging",
+        "usersdb": "StartWithoutDebugging"
       }
     }
   }

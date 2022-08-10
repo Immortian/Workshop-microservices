@@ -45,7 +45,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: workshopsv
     ports:
-      - "5051:80"
+      - "5050:80"
     depends_on:
       - usersdb
       - itemsdb
@@ -101,3 +101,18 @@ services:
       - "8002:80"
     depends_on:
       - rabbitmq
+  transactions.microservice:
+    container_name: workshop-transactions-microservice
+    image: transactions.microservice
+    build:
+      context: .
+      dockerfile: Workshop.Transactions/Transactions.Microservice/Dockerfile
+    restart: always
+    environment:
+      ASPNETCORE_URLS: "http://+80"
+      ASPNETCORE_ENVIRONMENT: Production
+    ports:
+      - "8003:80"
+    depends_on:
+      - rabbitmq
+      - transactionsdb
