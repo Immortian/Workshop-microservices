@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_USER: workshopuser
       POSTGRES_PASSWORD: workshopsv
-      POSTGRES_DB: workshopusersdb
+      POSTGRES_DB: workshop-usersdb
     volumes:
       - ./Workshop.Users/Database:/docker-entrypoint-initdb.d
     ports:
@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_USER: workshopuser
       POSTGRES_PASSWORD: workshopsv
-      POSTGRES_DB: workshopitemsdb
+      POSTGRES_DB: workshop-itemsdb
     volumes:
       - ./Workshop.Items/Database:/docker-entrypoint-initdb.d
     ports:
@@ -34,7 +34,7 @@ services:
     environment:
       POSTGRES_USER: workshopuser
       POSTGRES_PASSWORD: workshopsv
-      POSTGRES_DB: workshoptransactionsdb
+      POSTGRES_DB: workshop-transactionsdb
     volumes:
       - ./Workshop.Transactions/Database:/docker-entrypoint-initdb.d
     ports:

@@ -30,6 +30,9 @@ namespace Users.Microservice
                 entity.HasIndex(e => e.UserName, "User_user_name_key")
                     .IsUnique();
 
+                entity.Property(e => e.WalletBalance)
+                    .HasColumnName("wallet_balance");
+
                 entity.Property(e => e.UserId)
                     .HasColumnName("user_id")
                     .UseIdentityAlwaysColumn();

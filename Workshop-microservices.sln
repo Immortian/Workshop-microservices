@@ -11,15 +11,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.ConfirmTransaction
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Users", "Workshop.Users", "{F806D1DC-C019-43A2-B923-E632873D3409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfirmTransactions.Microservice", "Workshop.ConfirmTransactions\ConfirmTransactions.Microservice\ConfirmTransactions.Microservice.csproj", "{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfirmTransactions.Microservice", "Workshop.ConfirmTransactions\ConfirmTransactions.Microservice\ConfirmTransactions.Microservice.csproj", "{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8969D334-CC11-464A-87FB-45C3956742DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Items.Microservice", "Workshop.Items\Items.Microservice\Items.Microservice.csproj", "{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Items.Microservice", "Workshop.Items\Items.Microservice\Items.Microservice.csproj", "{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Microservice", "Workshop.Transactions\Transactions.Microservice\Transactions.Microservice.csproj", "{04AF14F3-C24F-4838-8924-6A8199D3EA60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Microservice", "Workshop.Transactions\Transactions.Microservice\Transactions.Microservice.csproj", "{04AF14F3-C24F-4838-8924-6A8199D3EA60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Microservice", "Workshop.Users\Users.Microservice\Users.Microservice.csproj", "{580A180F-0FB8-4EE5-ABC8-6E933C197D15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users.Microservice", "Workshop.Users\Users.Microservice\Users.Microservice.csproj", "{580A180F-0FB8-4EE5-ABC8-6E933C197D15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{4ECCA218-DEB5-45D1-9B4C-FE328629E911}"
+	ProjectSection(SolutionItems) = preProject
+		Workshop.Items\Database\Create-workshop-items-db.sql = Workshop.Items\Database\Create-workshop-items-db.sql
+		Workshop.Items\Database\Fill-data.sql = Workshop.Items\Database\Fill-data.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{554A01D8-0E57-4EB7-BACD-FC2FC7C89ABF}"
+	ProjectSection(SolutionItems) = preProject
+		Workshop.Transactions\Database\Create-workshop-transactions-db.sql = Workshop.Transactions\Database\Create-workshop-transactions-db.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{9AFDC52B-5ABC-4687-9992-C6CBD04B0A6F}"
+	ProjectSection(SolutionItems) = preProject
+		Workshop.Users\Database\Create-workshop-users-db.sql = Workshop.Users\Database\Create-workshop-users-db.sql
+		Workshop.Users\Database\Fill-data.sql = Workshop.Users\Database\Fill-data.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +73,9 @@ Global
 		{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158} = {8DDFF7E0-DE77-4207-BC76-CB30D6CD8657}
 		{04AF14F3-C24F-4838-8924-6A8199D3EA60} = {A9F2271D-9B9D-4CF3-B49C-F572F59AAA35}
 		{580A180F-0FB8-4EE5-ABC8-6E933C197D15} = {F806D1DC-C019-43A2-B923-E632873D3409}
+		{4ECCA218-DEB5-45D1-9B4C-FE328629E911} = {8DDFF7E0-DE77-4207-BC76-CB30D6CD8657}
+		{554A01D8-0E57-4EB7-BACD-FC2FC7C89ABF} = {A9F2271D-9B9D-4CF3-B49C-F572F59AAA35}
+		{9AFDC52B-5ABC-4687-9992-C6CBD04B0A6F} = {F806D1DC-C019-43A2-B923-E632873D3409}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {174FCF9E-16AA-4CF7-85A1-9C9599C93740}
