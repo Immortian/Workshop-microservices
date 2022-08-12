@@ -11,7 +11,7 @@ This project is designed to optimize a high-loaded digital goods marketplace.
 * ***potgreSQL*** - 3 containers on image: postgres:13.3 (users database, items database and transactions database)
 * ***pgAdmin*** - container on image: dpage/pgadmin4 to manage DBs
 * ***RabbitMQ*** - message broker on image: rabbitmq:3-management with web UI
-* ***ASP.Net Core*** - 3 containers on image builded from mcr.microsoft.com/dotnet/aspnet:6.0 (users microservice, items microservice and confirm transaction microservice)
+* ***ASP.Net Core*** - 4 containers on image builded from mcr.microsoft.com/dotnet/aspnet:6.0 (users microservice, items microservice, confirm transaction microservice and transaction microservice)
 
 ## Run The Project
 You will need the following tools:
