@@ -24,7 +24,7 @@ namespace Transactions.Microservice.Commands
             CreateConnection();
         }
         /// <summary>
-        /// Send RPC messege using topic exchange
+        /// Send messege with correlationId using topic exchange
         /// </summary>
         /// <param name="value"></param>
         /// <param name="routingKey">topic exchange routing key</param>
@@ -40,7 +40,6 @@ namespace Transactions.Microservice.Commands
                     var body = Encoding.UTF8.GetBytes(messege);
 
                     var props = channel.CreateBasicProperties();
-                    props.ReplyTo = "topic_run_transaction_queue";
                     props.CorrelationId = correlationId;
 
                     channel.BasicPublish(exchange: "topic_run_transaction",

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Users.Microservice.Commands.CheckWalletBalance
+namespace Items.Microservice.Commands
 {
-    public class CheckWalletBalanceResponseCommand
+    public class ResponseCommand
     {
         public int TransactionId { get; set; }
         public bool IsOk { get; set; }

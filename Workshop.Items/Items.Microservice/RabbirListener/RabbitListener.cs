@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Items.Microservice.Commands.CheckItemOwner;
+using Items.Microservice.Commands.ItemTransfer;
 
 namespace Items.Microservice.RabbirListener
 {
@@ -26,8 +27,13 @@ namespace Items.Microservice.RabbirListener
             channel.QueueDeclare(queue: "topic_items_queue", autoDelete: false);
             channel.QueueBind(queue: "topic_items_queue",
                               exchange: "topic_transaction",
-                              routingKey: "#.ItemOwner.#");
+                              routingKey: "Items.#");
 
+            channel.ExchangeDeclare(exchange: "topic_run_transaction", type: ExchangeType.Topic);
+            channel.QueueBind(queue: "topic_items_queue",
+                              exchange: "topic_run_transaction",
+                              routingKey: "Items.#");
+            
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, ea) =>
             {
@@ -37,13 +43,22 @@ namespace Items.Microservice.RabbirListener
                 replyProps.ReplyTo = ea.BasicProperties.ReplyTo;
 
                 var message = Encoding.UTF8.GetString(body.ToArray());
-                var messegeContent = (CheckItemOwnerCommand)JsonSerializer.Deserialize(message, typeof(CheckItemOwnerCommand));
-                messegeContent.Properties = replyProps;
-                using (var scope = Services.CreateScope())
+
+                if (replyProps.CorrelationId == "ConfirmItemOwner")
                 {
-                    var serviceProvider = scope.ServiceProvider;
-                    Mediator = serviceProvider.GetRequiredService<IMediator>();
-                    Mediator.Send(messegeContent).Wait();
+                    var messegeContent = (CheckItemOwnerCommand)JsonSerializer.Deserialize(message, typeof(CheckItemOwnerCommand));
+                    messegeContent.Properties = replyProps;
+                    using (var scope = Services.CreateScope())
+                    {
+                        var serviceProvider = scope.ServiceProvider;
+                        Mediator = serviceProvider.GetRequiredService<IMediator>();
+                        Mediator.Send(messegeContent).Wait();
+                    }
+                }
+                else if(replyProps.CorrelationId == "ItemTransfer")
+                {
+                    var messegeContent = (ItemTransferCommand)JsonSerializer.Deserialize(message, typeof(ItemTransferCommand));
+                    SendMessegeToMediator(messegeContent, typeof(ItemTransferCommand));
                 }
             };
 
@@ -52,7 +67,16 @@ namespace Items.Microservice.RabbirListener
                                  consumer: consumer);
         }
 
-        [NonAction]
+        private void SendMessegeToMediator(object messegeContent, Type contentType)
+        {
+            var content = Convert.ChangeType(messegeContent, contentType);
+            using (var scope = Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+                Mediator = serviceProvider.GetRequiredService<IMediator>();
+                Mediator.Send(content).Wait();
+            }
+        }
         public void Deregister()
         {
             this.connection.Close();

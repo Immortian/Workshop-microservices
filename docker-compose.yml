@@ -13,6 +13,7 @@ services:
       - ./Workshop.Users/Database:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
+
   itemsdb:
     container_name: workshop-items-pg-13.3
     image: postgres:13.3
@@ -25,6 +26,7 @@ services:
       - ./Workshop.Items/Database:/docker-entrypoint-initdb.d
     ports:
       - "5433:5432"
+
   transactionsdb:
     container_name: workshop-transactions-pg-13.3
     image: postgres:13.3
@@ -37,6 +39,7 @@ services:
       - ./Workshop.Transactions/Database:/docker-entrypoint-initdb.d
     ports:
       - "5434:5432"
+
   pgadmin:
     container_name: workshop-pgadmin4
     image: dpage/pgadmin4
@@ -50,6 +53,7 @@ services:
       - usersdb
       - itemsdb
       - transactionsdb
+
   rabbitmq:
     container_name: workshop-mq
     image: rabbitmq:3-management
@@ -57,62 +61,30 @@ services:
     ports: 
       - "15672:15672"
       - "5672:5672"
-  users.microservice:
-    container_name: workshop-users-microservice
-    image: users.microservice
-    build:
-      context: .
-      dockerfile: /Workshop.Users/Users.Microservice/Dockerfile
-    restart: always
-    environment:
-      ASPNETCORE_URLS: "http://+80"
-      ASPNETCORE_ENVIRONMENT: Production
-    ports:
-      - "8000:80"
-    depends_on:
-      - usersdb
-      - rabbitmq
-  items.microservice:
-    container_name: workshop-items-microservice
-    image: items.microservice
-    build:
-      context: .
-      dockerfile: /Workshop.Items/Items.Microservice/Dockerfile
-    restart: always
-    environment:
-      ASPNETCORE_URLS: "http://+80"
-      ASPNETCORE_ENVIRONMENT: Production
-    ports:
-      - "8001:80"
-    depends_on:
-      - itemsdb
-      - rabbitmq
+
   confirmtransactions.microservice:
-    container_name: workshop-confirmtransactions-microservice
-    image: confirmtransactions.microservice
+    image: confirm-transactions.microservice
     build:
       context: .
       dockerfile: Workshop.ConfirmTransactions/ConfirmTransactions.Microservice/Dockerfile
-    restart: always
-    environment:
-      ASPNETCORE_URLS: "http://+80"
-      ASPNETCORE_ENVIRONMENT: Production
-    ports:
-      - "8002:80"
-    depends_on:
-      - rabbitmq
+
+  items.microservice:
+    image: items.microservice
+    build:
+      context: .
+      dockerfile: Workshop.Items/Items.Microservice/Dockerfile
+
+
   transactions.microservice:
-    container_name: workshop-transactions-microservice
     image: transactions.microservice
     build:
       context: .
       dockerfile: Workshop.Transactions/Transactions.Microservice/Dockerfile
-    restart: always
-    environment:
-      ASPNETCORE_URLS: "http://+80"
-      ASPNETCORE_ENVIRONMENT: Production
-    ports:
-      - "8003:80"
-    depends_on:
-      - rabbitmq
-      - transactionsdb
+
+
+  users.microservice:
+    image: users.microservice
+    build:
+      context: .
+      dockerfile: Workshop.Users/Users.Microservice/Dockerfile
+

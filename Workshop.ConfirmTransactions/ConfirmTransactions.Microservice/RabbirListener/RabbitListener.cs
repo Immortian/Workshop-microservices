@@ -45,9 +45,9 @@ namespace ConfirmTransactions.Microservice.RabbirListener
                         var serviceProvider = scope.ServiceProvider;
                         var _context = serviceProvider.GetRequiredService<transactionconfirmationdbContext>();
                         var transaction = _context.TransactionConfirmations.Where(x => x.TransactionId == messegeContent.TransactionId).FirstOrDefault();
-                        if (ea.BasicProperties.CorrelationId == "WalletBalanceConfirmation")
+                        if (ea.BasicProperties.CorrelationId == "ConfirmWalletBalance")
                             transaction.IsWalletBalanceOk = messegeContent.IsOk;
-                        if (ea.BasicProperties.CorrelationId == "ItemOwnerConfirmation")
+                        if (ea.BasicProperties.CorrelationId == "ConfirmItemOwner")
                             transaction.IsItemOwnerOk = messegeContent.IsOk;
 
                         _context.SaveChanges();

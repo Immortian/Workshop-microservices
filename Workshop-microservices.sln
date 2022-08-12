@@ -1,47 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.0.32014.148
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8227F6EB-D1CA-409F-8375-676D105A363C}"
-	ProjectSection(SolutionItems) = preProject
-		.gitattributes = .gitattributes
-		.gitignore = .gitignore
-		README.md = README.md
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Items", "Workshop.Items", "{8DDFF7E0-DE77-4207-BC76-CB30D6CD8657}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Users", "Workshop.Users", "{0AAA244A-C210-40AD-A417-0D2FAE9B865C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Transactions", "Workshop.Transactions", "{A9F2271D-9B9D-4CF3-B49C-F572F59AAA35}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{81DBAF29-CBB1-4A50-A7E4-2A8407D86B68}"
-	ProjectSection(SolutionItems) = preProject
-		Workshop.Users\Database\workshop-users-db.sql = Workshop.Users\Database\workshop-users-db.sql
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.ConfirmTransactions", "Workshop.ConfirmTransactions", "{7F572228-D2F9-478B-B067-22587F337255}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Items", "Workshop.Items", "{72E79640-4769-44D8-A816-EC93FED51562}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Users", "Workshop.Users", "{F806D1DC-C019-43A2-B923-E632873D3409}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.Transactions", "Workshop.Transactions", "{EC3916E4-FFD9-469E-9902-1A2B1E9D98C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfirmTransactions.Microservice", "Workshop.ConfirmTransactions\ConfirmTransactions.Microservice\ConfirmTransactions.Microservice.csproj", "{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{A05AEC2A-A411-4CB2-9E72-998E97D16058}"
-	ProjectSection(SolutionItems) = preProject
-		Workshop.Transactions\Database\workshop-transactions-db.sql = Workshop.Transactions\Database\workshop-transactions-db.sql
-	EndProjectSection
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8969D334-CC11-464A-87FB-45C3956742DD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{218FFD9E-CDD0-4910-BFE9-B3088EFB6027}"
-	ProjectSection(SolutionItems) = preProject
-		Workshop.Items\Database\workshop-items-db.sql = Workshop.Items\Database\workshop-items-db.sql
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Items.Microservice", "Workshop.Items\Items.Microservice\Items.Microservice.csproj", "{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users.Microservice", "Workshop.Users\Users.Microservice\Users.Microservice.csproj", "{91473367-A359-472E-BCE5-86B5FEBEE744}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Microservice", "Workshop.Transactions\Transactions.Microservice\Transactions.Microservice.csproj", "{04AF14F3-C24F-4838-8924-6A8199D3EA60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Items.Microservice", "Workshop.Items\Items.Microservice\Items.Microservice.csproj", "{51A88AEF-9DAC-4EF7-92DB-80183863A632}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0E0A59FC-725E-436F-87AB-11618D793223}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfirmTransactions.Microservice", "Workshop.ConfirmTransactions\ConfirmTransactions.Microservice\ConfirmTransactions.Microservice.csproj", "{A53AE829-3771-485A-A90C-A53C942C6D9C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop.ConfirmTransactions", "Workshop.ConfirmTransactions", "{C926471A-EBE7-4CA8-8F4C-1E2D91393B72}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Microservice", "Workshop.Transactions\Transactions.Microservice\Transactions.Microservice.csproj", "{508E1614-0EB8-4742-821D-84E1B0F3E88F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Microservice", "Workshop.Users\Users.Microservice\Users.Microservice.csproj", "{580A180F-0FB8-4EE5-ABC8-6E933C197D15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,40 +27,37 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{91473367-A359-472E-BCE5-86B5FEBEE744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91473367-A359-472E-BCE5-86B5FEBEE744}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91473367-A359-472E-BCE5-86B5FEBEE744}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91473367-A359-472E-BCE5-86B5FEBEE744}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51A88AEF-9DAC-4EF7-92DB-80183863A632}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E0A59FC-725E-436F-87AB-11618D793223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E0A59FC-725E-436F-87AB-11618D793223}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E0A59FC-725E-436F-87AB-11618D793223}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E0A59FC-725E-436F-87AB-11618D793223}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A53AE829-3771-485A-A90C-A53C942C6D9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{508E1614-0EB8-4742-821D-84E1B0F3E88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{508E1614-0EB8-4742-821D-84E1B0F3E88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{508E1614-0EB8-4742-821D-84E1B0F3E88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{508E1614-0EB8-4742-821D-84E1B0F3E88F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8969D334-CC11-464A-87FB-45C3956742DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8969D334-CC11-464A-87FB-45C3956742DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8969D334-CC11-464A-87FB-45C3956742DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8969D334-CC11-464A-87FB-45C3956742DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04AF14F3-C24F-4838-8924-6A8199D3EA60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04AF14F3-C24F-4838-8924-6A8199D3EA60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04AF14F3-C24F-4838-8924-6A8199D3EA60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04AF14F3-C24F-4838-8924-6A8199D3EA60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{580A180F-0FB8-4EE5-ABC8-6E933C197D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580A180F-0FB8-4EE5-ABC8-6E933C197D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580A180F-0FB8-4EE5-ABC8-6E933C197D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580A180F-0FB8-4EE5-ABC8-6E933C197D15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{81DBAF29-CBB1-4A50-A7E4-2A8407D86B68} = {0AAA244A-C210-40AD-A417-0D2FAE9B865C}
-		{A05AEC2A-A411-4CB2-9E72-998E97D16058} = {EC3916E4-FFD9-469E-9902-1A2B1E9D98C9}
-		{218FFD9E-CDD0-4910-BFE9-B3088EFB6027} = {72E79640-4769-44D8-A816-EC93FED51562}
-		{91473367-A359-472E-BCE5-86B5FEBEE744} = {0AAA244A-C210-40AD-A417-0D2FAE9B865C}
-		{51A88AEF-9DAC-4EF7-92DB-80183863A632} = {72E79640-4769-44D8-A816-EC93FED51562}
-		{A53AE829-3771-485A-A90C-A53C942C6D9C} = {C926471A-EBE7-4CA8-8F4C-1E2D91393B72}
-		{508E1614-0EB8-4742-821D-84E1B0F3E88F} = {EC3916E4-FFD9-469E-9902-1A2B1E9D98C9}
+		{75C0CC43-D8B5-4AF4-8E54-77FEC3BC3853} = {7F572228-D2F9-478B-B067-22587F337255}
+		{E7A2DB16-FAB1-4F54-BDEC-41165EC6F158} = {8DDFF7E0-DE77-4207-BC76-CB30D6CD8657}
+		{04AF14F3-C24F-4838-8924-6A8199D3EA60} = {A9F2271D-9B9D-4CF3-B49C-F572F59AAA35}
+		{580A180F-0FB8-4EE5-ABC8-6E933C197D15} = {F806D1DC-C019-43A2-B923-E632873D3409}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8DE0AFF0-4249-4118-A060-9B02BA87B5D3}
+		SolutionGuid = {174FCF9E-16AA-4CF7-85A1-9C9599C93740}
 	EndGlobalSection
 EndGlobal

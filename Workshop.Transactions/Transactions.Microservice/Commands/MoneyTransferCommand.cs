@@ -12,6 +12,5 @@ namespace Transactions.Microservice.Commands
         public int SellerId { get; set; }
         public int BuyerId { get; set; }
         public decimal Price { get; set; }
-        public bool? Success { get; set; }
     }
 }

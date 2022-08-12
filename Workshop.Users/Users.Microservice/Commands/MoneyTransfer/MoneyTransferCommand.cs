@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Transactions.Microservice.Commands
+namespace Users.Microservice.Commands.MoneyTransfer
 {
-    public class ItemTransferCommand
+    public class MoneyTransferCommand : IRequest
     {
         public int TransactionId { get; set; }
         public int SellerId { get; set; }
         public int BuyerId { get; set; }
-        public int? CollectionId { get; set; }
-        public int? ItemId { get; set; }
+        public decimal Price { get; set; }
     }
 }

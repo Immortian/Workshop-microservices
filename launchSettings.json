@@ -1,32 +1,17 @@
 {
   "profiles": {
-    "T-U": {
+    "Docker Compose": {
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "items.microservice": "DoNotStart",
-        "itemsdb": "DoNotStart",
-        "pgadmin": "DoNotStart",
-        "rabbitmq": "StartWithoutDebugging",
-        "confirmtransactions.microservice": "StartWithoutDebugging",
-        "transactionsdb": "DoNotStart",
-        "users.microservice": "StartWithoutDebugging",
-        "usersdb": "DoNotStart",
-        "transactions.microservice": "StartDebugging"
-      }
-    },
-    "All": {
-      "commandName": "DockerCompose",
-      "commandVersion": "1.0",
-      "serviceActions": {
-        "confirmtransactions.microservice": "StartWithoutDebugging",
-        "items.microservice": "StartWithoutDebugging",
+        "confirmtransactions.microservice": "StartDebugging",
+        "items.microservice": "StartDebugging",
+        "transactions.microservice": "StartDebugging",
+        "users.microservice": "StartDebugging",
         "itemsdb": "StartWithoutDebugging",
-        "pgadmin": "DoNotStart",
+        "pgadmin": "StartWithoutDebugging",
         "rabbitmq": "StartWithoutDebugging",
-        "transactions.microservice": "DoNotStart",
-        "transactionsdb": "DoNotStart",
-        "users.microservice": "StartWithoutDebugging",
+        "transactionsdb": "StartWithoutDebugging",
         "usersdb": "StartWithoutDebugging"
       }
     }

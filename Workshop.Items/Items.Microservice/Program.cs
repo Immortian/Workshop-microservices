@@ -36,6 +36,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception e) { }
 }
+
 app.UseRabbitListener();
 
 app.UseHttpsRedirection();

@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Users.Microservice.Commands.CheckWalletBalance;
+using Users.Microservice.Commands.MoneyTransfer;
 
 namespace Users.Microservice.RabbirListener
 {
@@ -26,7 +27,12 @@ namespace Users.Microservice.RabbirListener
             channel.QueueDeclare(queue: "topic_users_queue", autoDelete: false);
             channel.QueueBind(queue: "topic_users_queue",
                               exchange: "topic_transaction",
-                              routingKey: "#.WalletBalance.#");
+                              routingKey: "Users.#");
+
+            channel.ExchangeDeclare(exchange: "topic_run_transaction", type: ExchangeType.Topic);
+            channel.QueueBind(queue: "topic_users_queue",
+                              exchange: "topic_run_transaction",
+                              routingKey: "Users.#");
 
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, ea) =>
@@ -37,13 +43,25 @@ namespace Users.Microservice.RabbirListener
                 replyProps.ReplyTo = ea.BasicProperties.ReplyTo;
 
                 var message = Encoding.UTF8.GetString(body.ToArray());
-                var messegeContent = (CheckWalletbalanceCommand)JsonSerializer.Deserialize(message, typeof(CheckWalletbalanceCommand));
-                messegeContent.Properties = replyProps;
-                using (var scope = Services.CreateScope())
+                if (replyProps.CorrelationId == "ConfirmWalletBalance")
                 {
-                    var serviceProvider = scope.ServiceProvider;
-                    Mediator = serviceProvider.GetRequiredService<IMediator>();
-                    Mediator.Send(messegeContent).Wait();
+                    var messegeContent = (CheckWalletbalanceCommand)JsonSerializer.Deserialize(message, typeof(CheckWalletbalanceCommand));
+                    if (messegeContent != null)
+                    {
+                        messegeContent.Properties = replyProps;
+                        using (var scope = Services.CreateScope())
+                        {
+                            var serviceProvider = scope.ServiceProvider;
+                            Mediator = serviceProvider.GetRequiredService<IMediator>();
+                            Mediator.Send(messegeContent).Wait();
+                        }
+                    }
+                }
+                else if (replyProps.CorrelationId == "MoneyTransfer")
+                {
+                    var messegeContent = (MoneyTransferCommand)JsonSerializer.Deserialize(message, typeof(MoneyTransferCommand));
+                    if(messegeContent != null)
+                        SendMessegeToMediator(messegeContent, typeof(MoneyTransferCommand));
                 }
             };
 
@@ -52,7 +70,16 @@ namespace Users.Microservice.RabbirListener
                                  consumer: consumer);
         }
 
-        [NonAction]
+        private void SendMessegeToMediator(object messegeContent, Type contentType)
+        {
+            var content = Convert.ChangeType(messegeContent, contentType);
+            using (var scope = Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+                Mediator = serviceProvider.GetRequiredService<IMediator>();
+                Mediator.Send(content).Wait();
+            }
+        }
         public void Deregister()
         {
             this.connection.Close();

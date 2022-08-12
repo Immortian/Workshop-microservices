@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,26 +22,28 @@ namespace Items.Microservice.Commands.CheckItemOwner
         {
             bool IsOk = true;
 
-            //if(request.CollectionId != null)
-            //{
-            //    if (_context.ItemCollections.Where(x => x.CollectionId == request.CollectionId).FirstOrDefault().CollectionOwnerId != request.SellerId)
-            //        IsOk = false;
+            if (request.CollectionId != null)
+            {
+                var collection = await _context.ItemCollections.Where(x => x.CollectionId == request.CollectionId).FirstOrDefaultAsync();
+                if (collection is null || collection.CollectionOwnerId != request.SellerId)
+                    IsOk = false;
 
-            //    foreach(var item in _context.Items.Where(x => x.ItemCollectionId == request.CollectionId))
-            //    {
-            //        if (item.ItemOwnerId != request.SellerId)
-            //            IsOk = false;
-            //    }
-            //}
-            //else if (request.ItemId != null)
-            //{
-            //    if (_context.Items.Where(x => x.ItemId == request.ItemId).FirstOrDefault().ItemOwnerId != request.SellerId)
-            //        IsOk = false;
-            //}
-            //else
-            //    IsOk = false;
+                foreach (var item in _context.Items.Where(x => x.ItemCollectionId == request.CollectionId))
+                {
+                    if (item.ItemOwnerId != request.SellerId)
+                        IsOk = false;
+                }
+            }
+            else if (request.ItemId != null)
+            {
+                var item = await _context.Items.Where(x => x.ItemId == request.ItemId).FirstOrDefaultAsync();
+                if (item is null || item.ItemOwnerId != request.SellerId)
+                    IsOk = false;
+            }
+            else
+                IsOk = false;
 
-            _rabbitSender.Send(new CheckItemOwnerResponseCommand
+            _rabbitSender.Send(new ResponseCommand
             {
                 TransactionId = request.TransactionId,
                 IsOk = IsOk

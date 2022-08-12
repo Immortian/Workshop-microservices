@@ -1,10 +1,8 @@
-using MediatR;
-using Microsoft.Extensions.Configuration;
-using System.Reflection;
 using ConfirmTransactions.Microservice;
 using ConfirmTransactions.Microservice.Commands;
 using ConfirmTransactions.Microservice.RabbirListener;
-using Microsoft.EntityFrameworkCore;
+using MediatR;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddInMemoryDB();
 builder.Services.AddScoped<transactionconfirmationdbContext>();
@@ -20,7 +19,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOptions();
 builder.Services.AddSingleton<RabbitListener>();
 builder.Services.AddSingleton<RabbitSender>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

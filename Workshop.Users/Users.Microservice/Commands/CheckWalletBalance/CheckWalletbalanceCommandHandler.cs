@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Users.Microservice.Commands.CheckWalletBalance
 {
@@ -15,13 +16,15 @@ namespace Users.Microservice.Commands.CheckWalletBalance
 
         public async Task<Unit> Handle(CheckWalletbalanceCommand request, CancellationToken cancellationToken)
         {
-            //var buyer = _context.Users.Where(x => x.UserId == request.BuyerId).FirstOrDefault();
+            var buyer = await _context.Users.Where(x => x.UserId == request.BuyerId).FirstOrDefaultAsync();
             var IsOk = false;
-            //if (buyer.WalletBalance >= request.Price)
-                IsOk = true;
+            if(buyer != null)
+                if (buyer.WalletBalance >= request.Price)
+                    IsOk = true;
+
             
             _rabbitSender.Send(
-            new CheckWalletBalanceResponseCommand
+            new ResponseCommand
             {
                 TransactionId = request.TransactionId,
                 IsOk = IsOk

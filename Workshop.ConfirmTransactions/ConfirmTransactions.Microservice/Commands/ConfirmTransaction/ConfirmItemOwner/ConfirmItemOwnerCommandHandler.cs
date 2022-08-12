@@ -16,7 +16,7 @@ namespace ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmIt
         }
         public async Task<Unit> Handle(ConfirmItemOwnerCommand request, CancellationToken cancellationToken)
         {
-            _rabbitSender.Send(request, "Confirm.Transaction.ItemOwner", "ItemOwnerConfirmation");
+            _rabbitSender.Send(request, "Items.Transaction.ConfirmItemOwner", "ConfirmItemOwner");
             return Unit.Value;
         }
     }

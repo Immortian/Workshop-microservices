@@ -11,7 +11,7 @@ namespace ConfirmTransactions.Microservice.Commands.ConfirmTransaction.ConfirmWa
         }
         public async Task<Unit> Handle(ConfirmWalletBalanceCommand request, CancellationToken cancellationToken)
         {
-            _rabbitSender.Send(request, "Confirm.Transaction.WalletBalance", "WalletBalanceConfirmation");
+            _rabbitSender.Send(request, "Users.Transaction.ConfirmWalletBalance", "ConfirmWalletBalance");
             return Unit.Value;
         }
     }

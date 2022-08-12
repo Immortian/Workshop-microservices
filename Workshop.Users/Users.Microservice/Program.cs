@@ -7,6 +7,7 @@ using Users.Microservice.RabbirListener;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -35,6 +36,7 @@ using (var scope = app.Services.CreateScope())
     catch (Exception e) { }
 }
 app.UseRabbitListener();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
