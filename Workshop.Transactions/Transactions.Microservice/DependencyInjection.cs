@@ -11,7 +11,7 @@ namespace Transactions.Microservice
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration["DbConnection"];
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<workshoptransactionsdbContext>(options =>
             {
                 options.UseNpgsql(connectionString);

@@ -40,6 +40,19 @@ services:
     ports:
       - "5434:5432"
 
+  identitydb:
+    container_name: workshop-identity-pg-13.3
+    image: postgres:13.3
+    restart: always
+    environment:
+      POSTGRES_USER: workshopuser
+      POSTGRES_PASSWORD: workshopsv
+      POSTGRES_DB: workshop-identitydb
+    volumes:
+      - ./Workshop.Identity/Database:/docker-entrypoint-initdb.d
+    ports:
+      - "5435:5432"
+
   pgadmin:
     container_name: workshop-pgadmin4
     image: dpage/pgadmin4
@@ -87,4 +100,11 @@ services:
     build:
       context: .
       dockerfile: Workshop.Users/Users.Microservice/Dockerfile
+
+
+  identity.microservice:
+    image: identity.microservice
+    build:
+      context: .
+      dockerfile: Workshop.Identity/Identity.Microservice/Dockerfile
 

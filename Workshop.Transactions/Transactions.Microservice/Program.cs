@@ -27,7 +27,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    try
+    {
+        var context = serviceProvider.GetRequiredService<workshoptransactionsdbContext>();
+        DBInitializer.Initialize(context);
+    }
+    catch (Exception e) { }
+}
 app.UseRabbitListener();
 
 app.UseHttpsRedirection();

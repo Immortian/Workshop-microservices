@@ -12,6 +12,25 @@
         "pgadmin": "StartWithoutDebugging",
         "rabbitmq": "StartWithoutDebugging",
         "transactionsdb": "StartWithoutDebugging",
+        "usersdb": "StartWithoutDebugging",
+        "identity.microservice": "StartDebugging",
+        "identitydb": "StartWithoutDebugging"
+      }
+    },
+    "Db Manage": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "confirmtransactions.microservice": "DoNotStart",
+        "identity.microservice": "DoNotStart",
+        "identitydb": "StartWithoutDebugging",
+        "items.microservice": "DoNotStart",
+        "itemsdb": "StartWithoutDebugging",
+        "pgadmin": "StartWithoutDebugging",
+        "rabbitmq": "DoNotStart",
+        "transactions.microservice": "DoNotStart",
+        "transactionsdb": "StartWithoutDebugging",
+        "users.microservice": "DoNotStart",
         "usersdb": "StartWithoutDebugging"
       }
     }
