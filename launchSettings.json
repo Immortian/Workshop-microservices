@@ -14,7 +14,8 @@
         "transactionsdb": "StartWithoutDebugging",
         "usersdb": "StartWithoutDebugging",
         "identity.microservice": "StartDebugging",
-        "identitydb": "StartWithoutDebugging"
+        "identitydb": "StartWithoutDebugging",
+        "client": "StartDebugging"
       }
     },
     "Db Manage": {
@@ -31,7 +32,26 @@
         "transactions.microservice": "DoNotStart",
         "transactionsdb": "StartWithoutDebugging",
         "users.microservice": "DoNotStart",
-        "usersdb": "StartWithoutDebugging"
+        "usersdb": "StartWithoutDebugging",
+        "client": "DoNotStart"
+      }
+    },
+    "Identity Only": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "confirmtransactions.microservice": "DoNotStart",
+        "identity.microservice": "StartDebugging",
+        "identitydb": "StartWithoutDebugging",
+        "items.microservice": "DoNotStart",
+        "itemsdb": "DoNotStart",
+        "pgadmin": "StartWithoutDebugging",
+        "rabbitmq": "DoNotStart",
+        "transactions.microservice": "DoNotStart",
+        "transactionsdb": "DoNotStart",
+        "users.microservice": "DoNotStart",
+        "usersdb": "DoNotStart",
+        "client": "StartDebugging"
       }
     }
   }

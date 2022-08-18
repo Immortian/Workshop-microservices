@@ -108,3 +108,10 @@ services:
       context: .
       dockerfile: Workshop.Identity/Identity.Microservice/Dockerfile
 
+
+  client:
+    image: client
+    build:
+      context: .
+      dockerfile: Workshop.WebApplication/Client/Dockerfile
+

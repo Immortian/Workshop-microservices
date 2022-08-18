@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Workshop.Shared.Models;
 
 namespace Items.Microservice
 {
@@ -15,6 +16,11 @@ namespace Items.Microservice
             services.AddDbContext<workshopitemsdbContext>(options =>
             {
                 options.UseNpgsql(connectionString);
+            });
+            services.AddAutoMapper(options =>
+            {
+                options.CreateMap(typeof(Item), typeof(ItemModel));
+                options.CreateMap(typeof(ItemCollection), typeof(ItemCollectionModel));
             });
 
             return services;

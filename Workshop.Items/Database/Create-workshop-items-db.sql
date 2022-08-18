@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS public."ItemCollection"
 	collection_name character varying(30) COLLATE pg_catalog."default",
 	collection_price money NOT NULL,
     collection_description character varying(150) COLLATE pg_catalog."default",
+    item_count integer NOT NULL,
     CONSTRAINT "ItemCollection_pkey" PRIMARY KEY (collection_id)
 );
 

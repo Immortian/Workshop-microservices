@@ -1,0 +1,46 @@
+﻿@page "/collectionsgallery"
+
+<h3>Gallery</h3>
+
+<div class="row">
+    @if (Collections.Any())
+    {
+        @foreach(var collection in Collections)
+        {
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h5 class="card-title"><b>@collection.CollectionName</b></h5>
+                    <p class="card-text">@collection.CollectionDescription</p>
+                </div>
+                <table>
+                    <tr>
+                        @foreach(var item in Items.Where(x => x.ItemCollectionId == collection.CollectionId))
+                        {
+                            <td class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-4 mh-25 mb-4">
+                                <div>
+                                    <div class="card shadow-sm rounded">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><b>@item.ItemName</b></h5>
+                                            <p class="card-text">@item.ItemDescription</p>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <span>Price: @item.ItemPrice $</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                </table>
+                <br>
+                <div class="card-footer text-muted">
+                    <span>Price: @collection.CollectionPrice $</span>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No collections found</p>
+    }
+</div>

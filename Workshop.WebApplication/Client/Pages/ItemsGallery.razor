@@ -1,0 +1,27 @@
+﻿@page "/itemsgallery"
+
+<h3>Gallery</h3>
+
+<div class="row">
+    @if (Items.Any())
+    {
+        @foreach(var item in Items)
+        {
+            <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-4 mh-25 mb-4">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>@item.ItemName</b></h5>
+                        <p class="card-text">@item.ItemDescription</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <span>Price: @item.ItemPrice $</span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No items found</p>
+    }
+</div>

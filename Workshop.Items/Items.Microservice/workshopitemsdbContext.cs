@@ -75,6 +75,9 @@ namespace Items.Microservice
                     .HasMaxLength(30)
                     .HasColumnName("collection_name");
 
+                entity.Property(e => e.ItemCount)
+                    .HasColumnName("item_count");
+
                 entity.Property(e => e.CollectionOwnerId).HasColumnName("collection_owner_id");
 
                 entity.Property(e => e.CollectionPrice)
