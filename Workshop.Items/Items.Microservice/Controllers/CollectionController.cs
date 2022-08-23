@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Workshop.Shared.Models;
@@ -9,6 +10,7 @@ namespace Items.Microservice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class CollectionController : ControllerBase
     {
         private readonly workshopitemsdbContext _context;
