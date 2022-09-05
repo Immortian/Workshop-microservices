@@ -18,7 +18,12 @@ namespace Client.Services
         {
             ISSettings = iSSettings;
             _httpClient = httpClient;
-            discoveryDocument = _httpClient.GetDiscoveryDocumentAsync(this.ISSettings.Value.DiscoveryUrl).Result;
+            discoveryDocument = _httpClient.GetDiscoveryDocumentAsync(
+                new DiscoveryDocumentRequest 
+                { 
+                    Address = this.ISSettings.Value.DiscoveryUrl, 
+                    Policy = { RequireHttps = false } 
+                }).Result;
 
             if (discoveryDocument.IsError)
                 throw new Exception("Unable to discovery document", discoveryDocument.Exception);

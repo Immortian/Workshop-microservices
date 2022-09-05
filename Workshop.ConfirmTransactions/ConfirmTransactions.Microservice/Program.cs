@@ -39,7 +39,7 @@ using (var scope = app.Services.CreateScope())
 }
 app.UseRabbitListener();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
